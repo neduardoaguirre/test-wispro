@@ -26,10 +26,3 @@ a {
   padding: 0.5rem;
   color: var(--white);
 }
-
-.error {
-  max-width: 600px;
-  margin: 2rem auto 0 auto;
-  background-color: rgb(170, 0, 0);
-  color: var(--white);
-}

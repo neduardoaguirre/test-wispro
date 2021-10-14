@@ -20,6 +20,16 @@ const AgregarUsuario = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      firstName.trim() === '' ||
+      lastName.trim() === '' ||
+      document === '' ||
+      email.trim() === '' ||
+      address.trim() === ''
+    ) {
+      return;
+    }
+    console.log(user);
   };
 
   return (

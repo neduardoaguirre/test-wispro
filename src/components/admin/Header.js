@@ -1,21 +1,35 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import AuthContext from '../../context/authentication/authContext';
 import { Link } from 'react-router-dom';
 import { HiOutlineLogout } from 'react-icons/hi';
 
 const Header = () => {
+  const authContext = useContext(AuthContext);
+  const { user, userAuthenticated, logOut } = authContext;
+
+  useEffect(() => {
+    userAuthenticated();
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <header>
-      <nav className="navbar navbar-expand-md align-items-center bg-info d-flex flex-column">
+      <nav className="navbar navbar-expand-lg align-items-center bg-info d-flex flex-column">
         <div className="container justify-content-around">
           <Link to={'/admin-users'}>
             <h3 className="m-2">ADMIN Users</h3>
           </Link>
-          <span className="m-2">
-            Hola Eduardo{' '}
-            <button className="btn btn-secondary btn-sm rounded ml-1">
-              Salir <HiOutlineLogout />
-            </button>
-          </span>
+          {user && (
+            <span className="m-2">
+              Hola <span className="user-name">{user.name}</span>
+              <button
+                className="btn btn-secondary btn-sm rounded ml-3"
+                onClick={() => logOut()}
+              >
+                Salir <HiOutlineLogout />
+              </button>
+            </span>
+          )}
         </div>
         <div className="container justify-content-around align-items-center p-1">
           <Link className="nav-link" to={'/admin-users/agregar-usuario'}>
