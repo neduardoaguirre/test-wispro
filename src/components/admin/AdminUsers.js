@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Header from './Header';
-import { HiTrash, HiPencil } from 'react-icons/hi';
+import User from './User';
+
+import userContext from '../../context/users/userContext';
 
 const AdminUsers = () => {
+  const usersContext = useContext(userContext);
+  const { users, getUsers } = usersContext;
+
+  useEffect(() => {
+    getUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <Header />
@@ -19,25 +28,15 @@ const AdminUsers = () => {
               <th>Eliminar</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>Juan</td>
-              <td>Perez</td>
-              <td>30111222</td>
-              <td>Salta 123, Luján, Pcia. de Bs. As.</td>
-              <td>jperez@mail.com</td>
-              <td>
-                <button type="button" className="btn btn-info btn-sm rounded">
-                  <HiPencil />
-                </button>
-              </td>
-              <td>
-                <button type="button" className="btn btn-danger btn-sm rounded">
-                  <HiTrash />
-                </button>
-              </td>
-            </tr>
-          </tbody>
+          {users.length > 0 ? (
+            users.map((user) => <User key={user._id} user={user} />)
+          ) : (
+            <caption className="p-0">
+              <p className="alert alert-warning text-center">
+                No hay usuarios registrados
+              </p>
+            </caption>
+          )}
         </table>
       </div>
     </>
