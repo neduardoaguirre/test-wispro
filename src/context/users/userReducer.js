@@ -1,4 +1,13 @@
-import { LOADING, GET_USERS, ADD_USER, ERROR_ADD_USER } from '../../types';
+import {
+  LOADING,
+  GET_USERS,
+  ADD_USER,
+  ERROR_ADD_USER,
+  EDIT_USER_OK,
+  EDIT_USER_ERROR,
+  SELECTED_USER,
+  DELETE_USER,
+} from '../../types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state, action) => {
@@ -23,6 +32,27 @@ export default (state, action) => {
         redirect: true,
         loading: false,
       };
+    case SELECTED_USER:
+      return {
+        ...state,
+        userselected: action.payload,
+      };
+    case EDIT_USER_OK:
+      return {
+        ...state,
+        users: state.users.map((user) =>
+          user._id === action.payload._id ? action.payload : user
+        ),
+        message: null,
+        redirect: true,
+        loading: false,
+      };
+    case DELETE_USER:
+      return {
+        ...state,
+        users: state.users.filter((user) => user._id !== action.payload),
+      };
+    case EDIT_USER_ERROR:
     case ERROR_ADD_USER:
       return {
         ...state,

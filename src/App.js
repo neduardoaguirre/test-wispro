@@ -32,7 +32,7 @@ function App() {
               />
               <Route
                 exact
-                path="/admin-users/editar-usuario"
+                path="/admin-users/editar/:id"
                 component={EditarUsuario}
               />
             </Switch>

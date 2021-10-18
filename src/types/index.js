@@ -11,5 +11,9 @@ export const HIDE_ALERT = 'HIDE_ALERT';
 export const GET_USERS = 'GET_USERS';
 export const ADD_USER = 'ADD_USER';
 export const ERROR_ADD_USER = 'ERROR_ADD_USER';
+export const SELECTED_USER = 'SELECTED_USER';
+export const EDIT_USER_OK = 'EDIT_USER_OK';
+export const EDIT_USER_ERROR = 'EDIT_USER_ERROR';
+export const DELETE_USER = 'DELETE_USER';
 
 export const LOADING = 'LOADING';

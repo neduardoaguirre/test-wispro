@@ -1,7 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Header from './Header';
+import userContext from '../../context/users/userContext';
+import AlertContext from '../../context/alerts/alertContext';
+import AuthContext from '../../context/authentication/authContext';
 
-const EditarUsuario = () => {
+const EditarUsuario = (props) => {
+  const usersContext = useContext(userContext);
+  const { userselected, editUser, loading, message, redirect } = usersContext;
+
+  const alertContext = useContext(AlertContext);
+  const { alert, showAlert } = alertContext;
+
+  const authContext = useContext(AuthContext);
+  const { isAuthenticated } = authContext;
+
   const [user, setUser] = useState({
     firstName: '',
     lastName: '',
@@ -9,6 +21,19 @@ const EditarUsuario = () => {
     document: '',
     address: '',
   });
+
+  useEffect(() => {
+    !isAuthenticated && props.history.push('/');
+    message && showAlert(message.msg, message.category);
+    redirect && props.history.push('/admin-users');
+    setUser(userselected);
+    // eslint-disable-next-line
+  }, [message, isAuthenticated, props.history, redirect, userselected]);
+
+  useEffect(() => {
+    setUser(userselected);
+  }, [userselected]);
+
   const { firstName, lastName, email, document, address } = user;
 
   const handleChange = (e) => {
@@ -20,6 +45,17 @@ const EditarUsuario = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      firstName.trim() === '' ||
+      lastName.trim() === '' ||
+      document === '' ||
+      email.trim() === '' ||
+      address.trim() === ''
+    ) {
+      showAlert('Todos los campos son obligatorios', 'alert alert-danger');
+      return;
+    }
+    editUser(user);
   };
 
   return (
@@ -111,13 +147,33 @@ const EditarUsuario = () => {
                       value={address}
                     />
                   </div>
+                  {alert ? (
+                    <div className={`msg-alert ${alert.category}`}>
+                      {alert.msg}
+                    </div>
+                  ) : null}
                   <div className="form-group row m-0 mt-4">
-                    <button
-                      type="submit"
-                      className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
-                    >
-                      Guardar Cambios
-                    </button>
+                    {loading ? (
+                      <button
+                        type="button"
+                        disabled
+                        className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
+                      >
+                        <span
+                          class="spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                        Modificando...
+                      </button>
+                    ) : (
+                      <button
+                        type="submit"
+                        className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
+                      >
+                        Guardar Cambios
+                      </button>
+                    )}
                   </div>
                 </form>
               </div>
