@@ -6,7 +6,7 @@ import AuthContext from '../../context/authentication/authContext';
 
 const AgregarUsuario = ({ history }) => {
   const usersContext = useContext(userContext);
-  const { addUser, message, redirect } = usersContext;
+  const { addUser, message, redirect, loading } = usersContext;
 
   const alertContext = useContext(AlertContext);
   const { alert, showAlert } = alertContext;
@@ -147,12 +147,27 @@ const AgregarUsuario = ({ history }) => {
                     </div>
                   ) : null}
                   <div className="form-group row m-0 mt-4">
-                    <button
-                      type="submit"
-                      className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
-                    >
-                      Agregar
-                    </button>
+                    {loading ? (
+                      <button
+                        type="button"
+                        disabled
+                        className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
+                      >
+                        <span
+                          class="spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                        Agregando...
+                      </button>
+                    ) : (
+                      <button
+                        type="submit"
+                        className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
+                      >
+                        Agregar
+                      </button>
+                    )}
                   </div>
                 </form>
               </div>

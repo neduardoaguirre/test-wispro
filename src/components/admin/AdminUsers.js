@@ -6,12 +6,13 @@ import userContext from '../../context/users/userContext';
 
 const AdminUsers = () => {
   const usersContext = useContext(userContext);
-  const { users, getUsers } = usersContext;
+  const { users, getUsers, loading } = usersContext;
 
   useEffect(() => {
     getUsers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <>
       <Header />
@@ -28,7 +29,20 @@ const AdminUsers = () => {
               <th>Eliminar</th>
             </tr>
           </thead>
-          {users.length > 0 ? (
+          {loading ? (
+            <caption className="p-0">
+              <div className="progress">
+                <div
+                  className="progress-bar progress-bar-striped progress-bar-animated"
+                  role="progressbar"
+                  aria-valuenow="75"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style={{ width: '100%' }}
+                ></div>
+              </div>
+            </caption>
+          ) : users.length > 0 ? (
             users.map((user) => <User key={user._id} user={user} />)
           ) : (
             <caption className="p-0">

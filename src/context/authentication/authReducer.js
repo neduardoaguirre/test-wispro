@@ -5,11 +5,17 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILED,
   LOGIN_OUT,
+  LOADING,
 } from '../../types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state, action) => {
   switch (action.type) {
+    case LOADING:
+      return {
+        ...state,
+        loading: action.payload,
+      };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem('token', action.payload.token);
@@ -17,6 +23,7 @@ export default (state, action) => {
         ...state,
         isAuthenticated: true,
         message: null,
+        loading: false,
       };
     case LOGIN_OUT:
     case LOGIN_FAILED:
@@ -28,12 +35,14 @@ export default (state, action) => {
         isAuthenticated: null,
         token: null,
         message: action.payload,
+        loading: false,
       };
     case GET_USER:
       return {
         ...state,
         isAuthenticated: true,
         user: action.payload,
+        loading: false,
       };
     default:
       return state;

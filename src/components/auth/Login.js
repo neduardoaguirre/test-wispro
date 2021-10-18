@@ -7,7 +7,7 @@ const Login = (props) => {
   const alertContext = useContext(AlertContext);
   const { alert, showAlert } = alertContext;
   const authContext = useContext(AuthContext);
-  const { login, message, isAuthenticated } = authContext;
+  const { login, message, isAuthenticated, loading } = authContext;
 
   useEffect(() => {
     if (isAuthenticated) props.history.push('/admin-users');
@@ -71,12 +71,27 @@ const Login = (props) => {
             <div className={`msg-alert ${alert.category}`}>{alert.msg}</div>
           ) : null}
           <div className="form-group row m-0 mt-4">
-            <button
-              type="submit"
-              className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
-            >
-              Iniciar Sesión
-            </button>
+            {loading ? (
+              <button
+                type="button"
+                disabled
+                className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
+              >
+                <span
+                  class="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                Autenticando...
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
+              >
+                Iniciar Sesión
+              </button>
+            )}
           </div>
           <div className="form-group row px-3 m-0 mt-4">
             <Link to={'/crear-cuenta'} className="text-muted">

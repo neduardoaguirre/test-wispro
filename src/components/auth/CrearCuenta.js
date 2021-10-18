@@ -7,7 +7,7 @@ const CrearCuenta = (props) => {
   const alertContext = useContext(AlertContext);
   const { alert, showAlert } = alertContext;
   const authContext = useContext(AuthContext);
-  const { registerUser, message, isAuthenticated } = authContext;
+  const { registerUser, message, isAuthenticated, loading } = authContext;
 
   useEffect(() => {
     if (isAuthenticated) props.history.push('/admin-users');
@@ -115,12 +115,27 @@ const CrearCuenta = (props) => {
             <div className={`msg-alert ${alert.category}`}>{alert.msg}</div>
           ) : null}
           <div className="form-group row m-0 mt-4">
-            <button
-              type="submit"
-              className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
-            >
-              Registrarse
-            </button>
+            {loading ? (
+              <button
+                type="button"
+                disabled
+                className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
+              >
+                <span
+                  class="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                Creando cuenta...
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
+              >
+                Registrarse
+              </button>
+            )}
           </div>
           <div className="form-group row px-3 m-0 mt-4">
             <Link to={'/'} className="text-muted">

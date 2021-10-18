@@ -12,6 +12,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILED,
   LOGIN_OUT,
+  LOADING,
 } from '../../types';
 
 const AuthState = (props) => {
@@ -24,7 +25,13 @@ const AuthState = (props) => {
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
+  const loading = () => ({
+    type: LOADING,
+    payload: true,
+  });
+
   const registerUser = async (data) => {
+    dispatch(loading());
     try {
       const res = await axios.post('/api/users', data);
       dispatch({
@@ -33,7 +40,6 @@ const AuthState = (props) => {
       });
       userAuthenticated();
     } catch (error) {
-      // console.log(error.response.data.msg);
       let msg;
       Array.isArray(error.response.data.msg)
         ? (msg = error.response.data.msg[0].msg)
@@ -57,7 +63,6 @@ const AuthState = (props) => {
     }
     try {
       const res = await axios.get('/api/auth');
-      // console.log(res);
       dispatch({
         type: GET_USER,
         payload: res.data.user,
@@ -71,6 +76,7 @@ const AuthState = (props) => {
   };
 
   const login = async (data) => {
+    dispatch(loading());
     try {
       const res = await axios.post('/api/auth', data);
       dispatch({
@@ -79,7 +85,6 @@ const AuthState = (props) => {
       });
       userAuthenticated();
     } catch (error) {
-      // console.log(error.response.data.msg);
       const alert = {
         msg: error.response.data.msg,
         category: 'alert alert-danger',
@@ -104,6 +109,7 @@ const AuthState = (props) => {
         isAuthenticated: state.isAuthenticated,
         user: state.user,
         message: state.message,
+        loading: state.loading,
         registerUser,
         login,
         userAuthenticated,
