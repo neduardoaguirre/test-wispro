@@ -1,7 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Header from './Header';
+import userContext from '../../context/users/userContext';
+import AlertContext from '../../context/alerts/alertContext';
+import AuthContext from '../../context/authentication/authContext';
 
-const AgregarUsuario = () => {
+const AgregarUsuario = ({ history }) => {
+  const usersContext = useContext(userContext);
+  const { addUser, message, redirect } = usersContext;
+
+  const alertContext = useContext(AlertContext);
+  const { alert, showAlert } = alertContext;
+
+  const authContext = useContext(AuthContext);
+  const { isAuthenticated } = authContext;
+
+  useEffect(() => {
+    !isAuthenticated && history.push('/');
+    message && showAlert(message.msg, message.category);
+    redirect && history.push('/admin-users');
+    // eslint-disable-next-line
+  }, [message, isAuthenticated, history, redirect]);
+
   const [user, setUser] = useState({
     firstName: '',
     lastName: '',
@@ -27,9 +46,10 @@ const AgregarUsuario = () => {
       email.trim() === '' ||
       address.trim() === ''
     ) {
+      showAlert('Todos los campos son obligatorios', 'alert alert-danger');
       return;
     }
-    console.log(user);
+    addUser(user);
   };
 
   return (
@@ -37,14 +57,14 @@ const AgregarUsuario = () => {
       <Header />
       <div className="container">
         <div className="row justify-content-center my-4">
-          <div className="col-md-8">
+          <div className="col-lg-8">
             <div className="card">
-              <div className="card-body">
+              <div className="card-body p-3">
                 <h2 className="text-center mb-4 font-weight-bold">
                   Nuevo Usuario
                 </h2>
-                <form onSubmit={handleSubmit}>
-                  <div className="form-group px-3">
+                <form onSubmit={handleSubmit} className="p-3">
+                  <div className="form-group">
                     <label
                       htmlFor="firstName"
                       className="col-sm-10 col-form-label"
@@ -53,14 +73,14 @@ const AgregarUsuario = () => {
                     </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control px-3"
                       placeholder="Nombres"
                       name="firstName"
                       onChange={handleChange}
                       value={firstName}
                     />
                   </div>
-                  <div className="form-group px-3">
+                  <div className="form-group">
                     <label
                       htmlFor="lastName"
                       className="col-sm-10 col-form-label"
@@ -69,27 +89,27 @@ const AgregarUsuario = () => {
                     </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control px-3"
                       placeholder="Apellidos"
                       name="lastName"
                       onChange={handleChange}
                       value={lastName}
                     />
                   </div>
-                  <div className="form-group px-3">
+                  <div className="form-group">
                     <label htmlFor="email" className="col-sm-10 col-form-label">
                       Email
                     </label>
                     <input
                       type="email"
-                      className="form-control"
+                      className="form-control px-3"
                       placeholder="user@mail.com"
                       name="email"
                       onChange={handleChange}
                       value={email}
                     />
                   </div>
-                  <div className="form-group px-3">
+                  <div className="form-group">
                     <label
                       htmlFor="document"
                       className="col-sm-10 col-form-label"
@@ -98,14 +118,14 @@ const AgregarUsuario = () => {
                     </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control px-3"
                       placeholder="Documento de identidad"
                       name="document"
                       onChange={handleChange}
                       value={document}
                     />
                   </div>
-                  <div className="form-group px-3">
+                  <div className="form-group">
                     <label
                       htmlFor="address"
                       className="col-sm-10 col-form-label"
@@ -114,19 +134,26 @@ const AgregarUsuario = () => {
                     </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control px-3"
                       placeholder="Dirección completa"
                       name="address"
                       onChange={handleChange}
                       value={address}
                     />
                   </div>
-                  <button
-                    type="submit"
-                    className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
-                  >
-                    Agregar
-                  </button>
+                  {alert ? (
+                    <div className={`msg-alert ${alert.category}`}>
+                      {alert.msg}
+                    </div>
+                  ) : null}
+                  <div className="form-group row m-0 mt-4">
+                    <button
+                      type="submit"
+                      className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
+                    >
+                      Agregar
+                    </button>
+                  </div>
                 </form>
               </div>
             </div>

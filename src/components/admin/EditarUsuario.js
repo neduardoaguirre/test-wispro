@@ -21,19 +21,20 @@ const EditarUsuario = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
   return (
     <>
       <Header />
       <div className="container">
         <div className="row justify-content-center my-4">
-          <div className="col-md-8">
+          <div className="col-lg-8">
             <div className="card">
-              <div className="card-body">
+              <div className="card-body p-3">
                 <h2 className="text-center mb-4 font-weight-bold">
                   Editar Usuario
                 </h2>
-                <form onSubmit={handleSubmit}>
-                  <div className="form-group px-3">
+                <form onSubmit={handleSubmit} className="p-3">
+                  <div className="form-group">
                     <label
                       htmlFor="firstName"
                       className="col-sm-10 col-form-label"
@@ -42,14 +43,14 @@ const EditarUsuario = () => {
                     </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control px-3"
                       placeholder="Nombres"
                       name="firstName"
                       onChange={handleChange}
                       value={firstName}
                     />
                   </div>
-                  <div className="form-group px-3">
+                  <div className="form-group">
                     <label
                       htmlFor="lastName"
                       className="col-sm-10 col-form-label"
@@ -58,27 +59,27 @@ const EditarUsuario = () => {
                     </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control px-3"
                       placeholder="Apellidos"
                       name="lastName"
                       onChange={handleChange}
                       value={lastName}
                     />
                   </div>
-                  <div className="form-group px-3">
+                  <div className="form-group">
                     <label htmlFor="email" className="col-sm-10 col-form-label">
                       Email
                     </label>
                     <input
                       type="email"
-                      className="form-control"
+                      className="form-control px-3"
                       placeholder="user@mail.com"
                       name="email"
                       onChange={handleChange}
                       value={email}
                     />
                   </div>
-                  <div className="form-group px-3">
+                  <div className="form-group">
                     <label
                       htmlFor="document"
                       className="col-sm-10 col-form-label"
@@ -87,14 +88,14 @@ const EditarUsuario = () => {
                     </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control px-3"
                       placeholder="Documento de identidad"
                       name="document"
                       onChange={handleChange}
                       value={document}
                     />
                   </div>
-                  <div className="form-group px-3">
+                  <div className="form-group">
                     <label
                       htmlFor="address"
                       className="col-sm-10 col-form-label"
@@ -103,19 +104,21 @@ const EditarUsuario = () => {
                     </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control px-3"
                       placeholder="Dirección completa"
                       name="address"
                       onChange={handleChange}
                       value={address}
                     />
                   </div>
-                  <button
-                    type="submit"
-                    className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
-                  >
-                    Guardar Cambios
-                  </button>
+                  <div className="form-group row m-0 mt-4">
+                    <button
+                      type="submit"
+                      className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
+                    >
+                      Guardar Cambios
+                    </button>
+                  </div>
                 </form>
               </div>
             </div>

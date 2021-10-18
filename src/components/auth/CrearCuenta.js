@@ -65,7 +65,7 @@ const CrearCuenta = (props) => {
             </label>
             <input
               type="text"
-              className="form-control"
+              className="form-control px-3"
               placeholder="Tu nombre"
               name="name"
               onChange={handleChange}
@@ -78,7 +78,7 @@ const CrearCuenta = (props) => {
             </label>
             <input
               type="email"
-              className="form-control"
+              className="form-control px-3"
               placeholder="correo@correo.com"
               name="email"
               onChange={handleChange}
@@ -91,7 +91,7 @@ const CrearCuenta = (props) => {
             </label>
             <input
               type="password"
-              className="form-control"
+              className="form-control px-3"
               placeholder="Tu contraseña"
               name="password"
               onChange={handleChange}
@@ -104,7 +104,7 @@ const CrearCuenta = (props) => {
             </label>
             <input
               type="password"
-              className="form-control"
+              className="form-control px-3"
               placeholder="Repetir contraseña"
               name="repeat"
               onChange={handleChange}
@@ -114,7 +114,7 @@ const CrearCuenta = (props) => {
           {alert ? (
             <div className={`msg-alert ${alert.category}`}>{alert.msg}</div>
           ) : null}
-          <div className="form-group row px-3">
+          <div className="form-group row m-0 mt-4">
             <button
               type="submit"
               className="btn btn-primary font-weight-bold text-uppercase d-block w-100"

@@ -20,7 +20,6 @@ const AuthState = (props) => {
     isAuthenticated: null,
     user: null,
     message: null,
-    loading: true,
   };
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
@@ -34,7 +33,7 @@ const AuthState = (props) => {
       });
       userAuthenticated();
     } catch (error) {
-      console.log(error.response.data.msg);
+      // console.log(error.response.data.msg);
       let msg;
       Array.isArray(error.response.data.msg)
         ? (msg = error.response.data.msg[0].msg)
@@ -58,7 +57,7 @@ const AuthState = (props) => {
     }
     try {
       const res = await axios.get('/api/auth');
-      console.log(res);
+      // console.log(res);
       dispatch({
         type: GET_USER,
         payload: res.data.user,
@@ -80,7 +79,7 @@ const AuthState = (props) => {
       });
       userAuthenticated();
     } catch (error) {
-      console.log(error.response.data.msg);
+      // console.log(error.response.data.msg);
       const alert = {
         msg: error.response.data.msg,
         category: 'alert alert-danger',
@@ -105,7 +104,6 @@ const AuthState = (props) => {
         isAuthenticated: state.isAuthenticated,
         user: state.user,
         message: state.message,
-        loading: state.loading,
         registerUser,
         login,
         userAuthenticated,

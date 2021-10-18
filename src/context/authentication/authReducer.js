@@ -17,7 +17,6 @@ export default (state, action) => {
         ...state,
         isAuthenticated: true,
         message: null,
-        loading: false,
       };
     case LOGIN_OUT:
     case LOGIN_FAILED:
@@ -29,14 +28,12 @@ export default (state, action) => {
         isAuthenticated: null,
         token: null,
         message: action.payload,
-        loading: false,
       };
     case GET_USER:
       return {
         ...state,
         isAuthenticated: true,
         user: action.payload,
-        loading: false,
       };
     default:
       return state;

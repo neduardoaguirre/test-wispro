@@ -2,7 +2,7 @@ import React from 'react';
 import { HiPencil, HiTrash } from 'react-icons/hi';
 
 const User = ({ user }) => {
-  const { _id, firstName, lastName, document, address, email } = user;
+  const { firstName, lastName, document, address, email } = user;
 
   return (
     <tbody>
