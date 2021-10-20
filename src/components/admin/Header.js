@@ -5,7 +5,8 @@ import { HiOutlineLogout } from 'react-icons/hi';
 
 const Header = () => {
   const authContext = useContext(AuthContext);
-  const { user, userAuthenticated, logOut } = authContext;
+  const { user, userAuthenticated, logOut, refresh } = authContext;
+  console.log(refresh);
 
   useEffect(() => {
     userAuthenticated();
@@ -19,7 +20,7 @@ const Header = () => {
           <Link to={'/admin-users'}>
             <h3 className="m-2">ADMIN Users</h3>
           </Link>
-          {user && (
+          {user ? (
             <span className="m-2">
               Hola <span className="user-name">{user.name}</span>
               <button
@@ -29,6 +30,15 @@ const Header = () => {
                 Salir <HiOutlineLogout />
               </button>
             </span>
+          ) : (
+            <div class="d-flex align-items-center">
+              <strong>Cargando...</strong>
+              <div
+                class="spinner-border ms-auto"
+                role="status"
+                aria-hidden="true"
+              ></div>
+            </div>
           )}
         </div>
         <div className="container justify-content-around align-items-center p-1">

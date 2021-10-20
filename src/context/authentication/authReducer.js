@@ -25,6 +25,7 @@ export default (state, action) => {
         isAuthenticated: true,
         message: null,
         loading: false,
+        refresh: false,
       };
     case LOGIN_OUT:
     case LOGIN_FAILED:
@@ -44,6 +45,7 @@ export default (state, action) => {
         isAuthenticated: true,
         user: action.payload,
         loading: false,
+        refresh: false,
       };
     case CLEAN_MESSAGE:
       return {
