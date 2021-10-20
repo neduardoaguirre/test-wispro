@@ -6,6 +6,7 @@ import {
   LOGIN_FAILED,
   LOGIN_OUT,
   LOADING,
+  CLEAN_MESSAGE,
 } from '../../types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -43,6 +44,11 @@ export default (state, action) => {
         isAuthenticated: true,
         user: action.payload,
         loading: false,
+      };
+    case CLEAN_MESSAGE:
+      return {
+        ...state,
+        message: null,
       };
     default:
       return state;

@@ -7,6 +7,7 @@ import {
   EDIT_USER_ERROR,
   SELECTED_USER,
   DELETE_USER,
+  CLEAN_MESSAGE,
 } from '../../types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -58,6 +59,11 @@ export default (state, action) => {
         ...state,
         message: action.payload,
         loading: false,
+      };
+    case CLEAN_MESSAGE:
+      return {
+        ...state,
+        message: null,
       };
     default:
       return state;

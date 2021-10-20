@@ -7,6 +7,7 @@ import AdminUsers from './components/admin/AdminUsers';
 import AgregarUsuario from './components/admin/AgregarUsuario';
 import EditarUsuario from './components/admin/EditarUsuario';
 import Graficas from './components/admin/Graficas';
+import PrivateRoute from './components/routes/PrivateRoute';
 
 import AlertState from './context/alerts/alertState';
 import AuthState from './context/authentication/authState';
@@ -27,25 +28,25 @@ function App() {
             <Switch>
               <Route exact path="/" component={Login} />
               <Route exact path="/crear-cuenta" component={CrearCuenta} />
-              <Route exact path="/admin-users" component={AdminUsers} />
-              <Route
+              <PrivateRoute exact path="/admin-users" component={AdminUsers} />
+              <PrivateRoute
                 exact
                 path="/admin-users/agregar-usuario"
                 component={AgregarUsuario}
               />
-              <Route
+              <PrivateRoute
                 exact
                 path="/admin-users/logueos"
                 component={() => <Graficas title="Logueos del mes" />}
               />
-              <Route
+              <PrivateRoute
                 exact
                 path="/admin-users/registro-usuarios"
                 component={() => (
                   <Graficas title="Usuarios registrados del mes" />
                 )}
               />
-              <Route
+              <PrivateRoute
                 exact
                 path="/admin-users/editar/:id"
                 component={EditarUsuario}

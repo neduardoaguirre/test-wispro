@@ -4,6 +4,7 @@ import AuthContext from './authContext';
 
 import axios from '../../config/axios';
 import authToken from '../../config/authToken';
+import Swal from 'sweetalert2';
 
 import {
   REGISTER_SUCCESS,
@@ -13,6 +14,7 @@ import {
   LOGIN_FAILED,
   LOGIN_OUT,
   LOADING,
+  CLEAN_MESSAGE,
 } from '../../types';
 
 const AuthState = (props) => {
@@ -21,13 +23,25 @@ const AuthState = (props) => {
     isAuthenticated: null,
     user: null,
     message: null,
+    loading: null,
   };
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1500,
+  });
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   const loading = () => ({
     type: LOADING,
     payload: true,
+  });
+
+  const cleanMessages = () => ({
+    type: CLEAN_MESSAGE,
   });
 
   const registerUser = async (data) => {
@@ -53,6 +67,7 @@ const AuthState = (props) => {
         type: REGISTER_FAILED,
         payload: alert,
       });
+      dispatch(cleanMessages());
     }
   };
 
@@ -68,10 +83,15 @@ const AuthState = (props) => {
         payload: res.data.user,
       });
     } catch (error) {
-      console.log(error.response);
+      const alert = {
+        msg: error.response.data.msg,
+        category: 'alert alert-danger',
+      };
       dispatch({
         type: LOGIN_FAILED,
+        payload: alert,
       });
+      dispatch(cleanMessages());
     }
   };
 
@@ -93,12 +113,17 @@ const AuthState = (props) => {
         type: LOGIN_FAILED,
         payload: alert,
       });
+      dispatch(cleanMessages());
     }
   };
 
   const logOut = () => {
     dispatch({
       type: LOGIN_OUT,
+    });
+    Toast.fire({
+      icon: 'success',
+      title: 'Sesión finalizada correctamente',
     });
   };
 

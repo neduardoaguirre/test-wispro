@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from 'react';
 import Header from './Header';
 import userContext from '../../context/users/userContext';
 import AlertContext from '../../context/alerts/alertContext';
-import AuthContext from '../../context/authentication/authContext';
 
 const AgregarUsuario = ({ history }) => {
   const usersContext = useContext(userContext);
@@ -11,15 +10,11 @@ const AgregarUsuario = ({ history }) => {
   const alertContext = useContext(AlertContext);
   const { alert, showAlert } = alertContext;
 
-  const authContext = useContext(AuthContext);
-  const { isAuthenticated } = authContext;
-
   useEffect(() => {
-    !isAuthenticated && history.push('/');
     message && showAlert(message.msg, message.category);
     redirect && history.push('/admin-users');
     // eslint-disable-next-line
-  }, [message, isAuthenticated, history, redirect]);
+  }, [message, history, redirect]);
 
   const [user, setUser] = useState({
     firstName: '',

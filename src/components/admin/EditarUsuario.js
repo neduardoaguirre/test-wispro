@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import Header from './Header';
 import userContext from '../../context/users/userContext';
 import AlertContext from '../../context/alerts/alertContext';
-import AuthContext from '../../context/authentication/authContext';
+import { useHistory } from 'react-router';
 
 const EditarUsuario = (props) => {
   const usersContext = useContext(userContext);
@@ -11,8 +11,7 @@ const EditarUsuario = (props) => {
   const alertContext = useContext(AlertContext);
   const { alert, showAlert } = alertContext;
 
-  const authContext = useContext(AuthContext);
-  const { isAuthenticated } = authContext;
+  const history = useHistory();
 
   const [user, setUser] = useState({
     firstName: '',
@@ -23,16 +22,11 @@ const EditarUsuario = (props) => {
   });
 
   useEffect(() => {
-    !isAuthenticated && props.history.push('/');
     message && showAlert(message.msg, message.category);
-    redirect && props.history.push('/admin-users');
+    redirect && history.push('/admin-users');
     setUser(userselected);
     // eslint-disable-next-line
-  }, [message, isAuthenticated, props.history, redirect, userselected]);
-
-  useEffect(() => {
-    setUser(userselected);
-  }, [userselected]);
+  }, [message, history, redirect, userselected]);
 
   const { firstName, lastName, email, document, address } = user;
 

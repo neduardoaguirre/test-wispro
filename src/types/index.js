@@ -17,3 +17,4 @@ export const EDIT_USER_ERROR = 'EDIT_USER_ERROR';
 export const DELETE_USER = 'DELETE_USER';
 
 export const LOADING = 'LOADING';
+export const CLEAN_MESSAGE = 'CLEAN_MESSAGES';

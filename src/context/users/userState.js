@@ -10,6 +10,7 @@ import {
   SELECTED_USER,
   EDIT_USER_ERROR,
   DELETE_USER,
+  CLEAN_MESSAGE,
 } from '../../types';
 import axios from '../../config/axios';
 import Swal from 'sweetalert2';
@@ -27,6 +28,10 @@ const UserState = (props) => {
   const loading = () => ({
     type: LOADING,
     payload: true,
+  });
+
+  const cleanMessages = () => ({
+    type: CLEAN_MESSAGE,
   });
 
   const getUsers = async () => {
@@ -68,6 +73,7 @@ const UserState = (props) => {
         type: ERROR_ADD_USER,
         payload: alert,
       });
+      dispatch(cleanMessages());
     }
   };
 
@@ -107,6 +113,7 @@ const UserState = (props) => {
         type: EDIT_USER_ERROR,
         payload: alert,
       });
+      dispatch(cleanMessages());
     }
   };
 
