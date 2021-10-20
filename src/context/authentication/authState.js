@@ -24,7 +24,6 @@ const AuthState = (props) => {
     user: null,
     message: null,
     loading: null,
-    refresh: true,
   };
 
   const Toast = Swal.mixin({
@@ -124,7 +123,7 @@ const AuthState = (props) => {
     });
     Toast.fire({
       icon: 'success',
-      title: 'Sesión finalizada correctamente',
+      title: 'Has cerrado sesión',
     });
   };
 
@@ -136,7 +135,6 @@ const AuthState = (props) => {
         user: state.user,
         message: state.message,
         loading: state.loading,
-        refresh: state.refresh,
         registerUser,
         login,
         userAuthenticated,

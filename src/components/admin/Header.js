@@ -5,8 +5,7 @@ import { HiOutlineLogout } from 'react-icons/hi';
 
 const Header = () => {
   const authContext = useContext(AuthContext);
-  const { user, userAuthenticated, logOut, refresh } = authContext;
-  console.log(refresh);
+  const { user, userAuthenticated, logOut } = authContext;
 
   useEffect(() => {
     userAuthenticated();

@@ -20,8 +20,8 @@ const EditarUsuario = (props) => {
     document: '',
     address: '',
   });
-
   useEffect(() => {
+    !userselected && history.push('/admin-users');
     message && showAlert(message.msg, message.category);
     redirect && history.push('/admin-users');
     setUser(userselected);
@@ -47,6 +47,9 @@ const EditarUsuario = (props) => {
       address.trim() === ''
     ) {
       showAlert('Todos los campos son obligatorios', 'alert alert-danger');
+      return;
+    } else if (userselected === user) {
+      showAlert('No se realizaron modificaciones', 'alert alert-warning');
       return;
     }
     editUser(user);
