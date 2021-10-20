@@ -1,10 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import Login from './components/auth/Login';
 import CrearCuenta from './components/auth/CrearCuenta';
 import AdminUsers from './components/admin/AdminUsers';
 import AgregarUsuario from './components/admin/AgregarUsuario';
 import EditarUsuario from './components/admin/EditarUsuario';
+import Graficas from './components/admin/Graficas';
+
 import AlertState from './context/alerts/alertState';
 import AuthState from './context/authentication/authState';
 import authToken from './config/authToken';
@@ -29,6 +32,18 @@ function App() {
                 exact
                 path="/admin-users/agregar-usuario"
                 component={AgregarUsuario}
+              />
+              <Route
+                exact
+                path="/admin-users/logueos"
+                component={() => <Graficas title="Logueos del mes" />}
+              />
+              <Route
+                exact
+                path="/admin-users/registro-usuarios"
+                component={() => (
+                  <Graficas title="Usuarios registrados del mes" />
+                )}
               />
               <Route
                 exact

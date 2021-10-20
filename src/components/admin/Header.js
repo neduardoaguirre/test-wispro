@@ -38,7 +38,7 @@ const Header = () => {
           <Link className="nav-link" to={'/admin-users/logueos'}>
             Gráfico Logueos
           </Link>
-          <Link className="nav-link" to={'/admin-users/graficos-usuarios'}>
+          <Link className="nav-link" to={'/admin-users/registro-usuarios'}>
             Gráfico Registro Usuarios
           </Link>
         </div>
