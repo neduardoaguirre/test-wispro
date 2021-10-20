@@ -4,6 +4,7 @@ import userReducer from './userReducer';
 import {
   LOADING,
   GET_USERS,
+  GET_USERS_ERROR,
   ADD_USER,
   ERROR_ADD_USER,
   EDIT_USER_OK,
@@ -43,7 +44,10 @@ const UserState = (props) => {
         payload: res.data.customers,
       });
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: GET_USERS_ERROR,
+        payload: 'Ocurrió un error, intente nuevamente',
+      });
     }
   };
 

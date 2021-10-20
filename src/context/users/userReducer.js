@@ -1,6 +1,7 @@
 import {
   LOADING,
   GET_USERS,
+  GET_USERS_ERROR,
   ADD_USER,
   ERROR_ADD_USER,
   EDIT_USER_OK,
@@ -53,6 +54,7 @@ export default (state, action) => {
         ...state,
         users: state.users.filter((user) => user._id !== action.payload),
       };
+    case GET_USERS_ERROR:
     case EDIT_USER_ERROR:
     case ERROR_ADD_USER:
       return {

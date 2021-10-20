@@ -9,6 +9,7 @@ export const SHOW_ALERT = 'SHOW_ALERT';
 export const HIDE_ALERT = 'HIDE_ALERT';
 
 export const GET_USERS = 'GET_USERS';
+export const GET_USERS_ERROR = 'GET_USERS_ERROR';
 export const ADD_USER = 'ADD_USER';
 export const ERROR_ADD_USER = 'ERROR_ADD_USER';
 export const SELECTED_USER = 'SELECTED_USER';

@@ -6,7 +6,7 @@ import userContext from '../../context/users/userContext';
 
 const AdminUsers = () => {
   const usersContext = useContext(userContext);
-  const { users, getUsers, loading } = usersContext;
+  const { users, getUsers, loading, message } = usersContext;
 
   useEffect(() => {
     getUsers();
@@ -44,6 +44,10 @@ const AdminUsers = () => {
             </caption>
           ) : users.length > 0 ? (
             users.map((user) => <User key={user._id} user={user} />)
+          ) : message ? (
+            <caption className="p-0">
+              <p className="alert alert-danger text-center">{message}</p>
+            </caption>
           ) : (
             <caption className="p-0">
               <p className="alert alert-warning text-center">
