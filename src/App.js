@@ -37,13 +37,13 @@ function App() {
               <PrivateRoute
                 exact
                 path="/admin-users/logueos"
-                component={() => <Graficas title="Logueos del mes" />}
+                component={() => <Graficas title="Logueos del último mes" />}
               />
               <PrivateRoute
                 exact
                 path="/admin-users/registro-usuarios"
                 component={() => (
-                  <Graficas title="Usuarios registrados del mes" />
+                  <Graficas title="Usuarios registrados del último mes" />
                 )}
               />
               <PrivateRoute

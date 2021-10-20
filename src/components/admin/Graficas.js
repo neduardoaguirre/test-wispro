@@ -1,31 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import { Line } from '@ant-design/charts';
 
 const Graficas = (props) => {
+  const [data, setData] = useState([]);
+
   const getFakeData = () => {
     const year = new Date().getFullYear();
-    const month = new Date().getMonth();
-    const day = new Date().getDate();
+    let month = new Date().getMonth();
+    if (month === 0) month = 12;
     let days = new Date(year, month, 0).getDate();
-    let arr_days = new Array(days);
-    for (let index = 1; index <= days; index++) {
-      arr_days.push(String(index));
-    }
     const data = [];
-    for (let index = 1; index <= day; index++) {
+    for (let index = 1; index <= days; index++) {
       data.push({
         day: String(index),
         value: Math.floor(Math.random() * 10),
       });
     }
-    for (let index = day + 1; index <= days; index++) {
-      data.push({ day: String(index), value: 0 });
-    }
     return data;
   };
 
-  const data = getFakeData();
+  useEffect(() => {
+    setData(getFakeData());
+  }, []);
 
   const config = {
     data,
