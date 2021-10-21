@@ -27,12 +27,13 @@ const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Validar campos
     if (email.trim() === '' || password.trim() === '') {
-      showAlert('Todos los campos son obligatorios', 'alert alert-danger');
+      showAlert(
+        'Todos los campos son obligatorios',
+        'alert alert-danger text-center'
+      );
       return;
     }
-    // Pasarlo al action
     login({ email, password });
   };
 
@@ -78,7 +79,7 @@ const Login = (props) => {
                 className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
               >
                 <span
-                  class="spinner-border spinner-border-sm"
+                  className="spinner-border spinner-border-sm"
                   role="status"
                   aria-hidden="true"
                 ></span>

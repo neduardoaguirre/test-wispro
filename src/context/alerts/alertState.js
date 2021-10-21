@@ -7,7 +7,6 @@ const AlertState = (props) => {
   const initialState = { alert: null };
   const [state, dispatch] = useReducer(alertReducer, initialState);
 
-  // Funciones
   const showAlert = (msg, category) => {
     dispatch({
       type: SHOW_ALERT,

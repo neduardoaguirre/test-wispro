@@ -16,7 +16,7 @@ const AdminUsers = () => {
   return (
     <>
       <Header />
-      <div className="table-responsive-md">
+      <div className="table-responsive-lg">
         <table className="table table-striped">
           <thead className="bg-primary table-dark">
             <tr>
@@ -25,8 +25,8 @@ const AdminUsers = () => {
               <th scope="col">DNI</th>
               <th scope="col">Dirección</th>
               <th scope="col">Email</th>
-              <th>Editar</th>
-              <th>Eliminar</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           {loading ? (

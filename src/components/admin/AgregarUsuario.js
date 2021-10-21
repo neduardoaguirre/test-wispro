@@ -41,7 +41,10 @@ const AgregarUsuario = ({ history }) => {
       email.trim() === '' ||
       address.trim() === ''
     ) {
-      showAlert('Todos los campos son obligatorios', 'alert alert-danger');
+      showAlert(
+        'Todos los campos son obligatorios',
+        'alert alert-danger text-center'
+      );
       return;
     }
     addUser(user);
@@ -149,7 +152,7 @@ const AgregarUsuario = ({ history }) => {
                         className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
                       >
                         <span
-                          class="spinner-border spinner-border-sm"
+                          className="spinner-border spinner-border-sm"
                           role="status"
                           aria-hidden="true"
                         ></span>

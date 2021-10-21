@@ -38,15 +38,19 @@ const CrearCuenta = (props) => {
       password.trim() === '' ||
       repeat.trim() === ''
     ) {
-      showAlert('Todos los campos son obligatorios', 'alert alert-danger');
+      showAlert(
+        'Todos los campos son obligatorios',
+        'alert alert-danger text-center'
+      );
       return;
     }
-    // Check los 2 pass
     if (password.length !== repeat.length) {
-      showAlert('Las contraseñas no coinciden', 'alert alert-danger');
+      showAlert(
+        'Las contraseñas no coinciden',
+        'alert alert-danger text-center'
+      );
       return;
     }
-    // Pasarlo al action
     registerUser({
       name,
       email,
@@ -122,7 +126,7 @@ const CrearCuenta = (props) => {
                 className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
               >
                 <span
-                  class="spinner-border spinner-border-sm"
+                  className="spinner-border spinner-border-sm"
                   role="status"
                   aria-hidden="true"
                 ></span>

@@ -61,7 +61,7 @@ const AuthState = (props) => {
 
       const alert = {
         msg,
-        category: 'alert alert-danger',
+        category: 'alert alert-danger text-center',
       };
       dispatch({
         type: REGISTER_FAILED,
@@ -85,7 +85,7 @@ const AuthState = (props) => {
     } catch (error) {
       const alert = {
         msg: error.response.data.msg,
-        category: 'alert alert-danger',
+        category: 'alert alert-danger text-center',
       };
       dispatch({
         type: LOGIN_FAILED,
@@ -107,7 +107,7 @@ const AuthState = (props) => {
     } catch (error) {
       const alert = {
         msg: error.response.data.msg,
-        category: 'alert alert-danger',
+        category: 'alert alert-danger text-center',
       };
       dispatch({
         type: LOGIN_FAILED,

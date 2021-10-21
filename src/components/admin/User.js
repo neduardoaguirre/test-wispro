@@ -43,22 +43,26 @@ const User = ({ user }) => {
         <td>{address}</td>
         <td>{email}</td>
         <td>
-          <button
-            type="button"
-            className="btn btn-info btn-sm rounded"
-            onClick={editUser}
-          >
-            <HiPencil />
-          </button>
+          <span data-tooltip="Editar">
+            <button
+              type="button"
+              className="btn btn-info btn-sm rounded"
+              onClick={editUser}
+            >
+              <HiPencil />
+            </button>
+          </span>
         </td>
         <td>
-          <button
-            type="button"
-            className="btn btn-danger btn-sm rounded"
-            onClick={userToDelete}
-          >
-            <HiTrash />
-          </button>
+          <span data-tooltip="Eliminar">
+            <button
+              type="button"
+              className="btn btn-danger btn-sm rounded"
+              onClick={userToDelete}
+            >
+              <HiTrash />
+            </button>
+          </span>
         </td>
       </tr>
     </tbody>

@@ -46,10 +46,16 @@ const EditarUsuario = (props) => {
       email.trim() === '' ||
       address.trim() === ''
     ) {
-      showAlert('Todos los campos son obligatorios', 'alert alert-danger');
+      showAlert(
+        'Todos los campos son obligatorios',
+        'alert alert-danger text-center'
+      );
       return;
     } else if (userselected === user) {
-      showAlert('No se realizaron modificaciones', 'alert alert-warning');
+      showAlert(
+        'No se realizaron modificaciones',
+        'alert alert-warning text-center'
+      );
       return;
     }
     editUser(user);
@@ -157,7 +163,7 @@ const EditarUsuario = (props) => {
                         className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
                       >
                         <span
-                          class="spinner-border spinner-border-sm"
+                          className="spinner-border spinner-border-sm"
                           role="status"
                           aria-hidden="true"
                         ></span>
