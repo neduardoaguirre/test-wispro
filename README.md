@@ -37,10 +37,9 @@ $ npm install
     $ cp .env.example .env
     ''
 3.  Cambie los valores del archivo .env de la siguiente manera:
-    ````sh
+    ```sh
       REACT_APP_BACKEND_URL=https://warm-waters-33638.herokuapp.com/
-        ```
-    ````
+    ```
 
 ### Correr la aplicación
 
