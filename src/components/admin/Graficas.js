@@ -43,7 +43,7 @@ const Graficas = (props) => {
   return (
     <>
       <Header />
-      <div className="col justify-content-center align-items-center">
+      <div className="col justify-content-center align-items-center mb-5">
         <h1 className="text-center m-5">{props.title}</h1>
         <div className="container col col-md-8 bg-secondary p-3">
           <Line {...config} />
