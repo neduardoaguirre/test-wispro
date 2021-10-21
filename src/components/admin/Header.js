@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import AuthContext from '../../context/authentication/authContext';
 import { Link } from 'react-router-dom';
 import { HiOutlineLogout } from 'react-icons/hi';
+import Logo from '../../assets/img/logo.png';
 
 const Header = () => {
   const authContext = useContext(AuthContext);
@@ -16,6 +17,7 @@ const Header = () => {
     <header>
       <nav className="navbar navbar-expand-lg align-items-center bg-info d-flex flex-column">
         <div className="container justify-content-around">
+          <img src={Logo} alt="Wispro Logo" className="logo" />
           <Link to={'/admin-users'}>
             <h3 className="m-2">ADMIN Users</h3>
           </Link>
